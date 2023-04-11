@@ -1,0 +1,34 @@
+1. Display FirstName According to Ascending order
+Ans:- select * from emp order by FIRST_NAME asc
+
+2. Display User Detail According to Lower to Higher Salary
+Ans:- select SALARY from emp order by SALARY asc
+
+3. Display Firstname Whose Firstname Starts with J.
+Ans:- SELECT FIRST_NAME FROM emp WHERE FIRST_NAME LIKE 'j%';
+
+4. Display All Employee Whose Designation is CLERK
+Ans:- select * from emp where DESIGNATION='CLERK';
+
+5. Remove Records which is belong from HR ANALYST category
+Ans:-delete from emp where DESIGNATION = 'HR ANALYST';
+
+6. Display User Detail Whose Department No. is 40
+Ans:- select * from emp where DEPTNO = 40; 
+
+7. Display Max salary from Table
+Ans:- SELECT MAX(SALARY) FROM emp
+
+8. Display Minimum Salary from Table
+Ans:- SELECT MIN(SALARY) FROM emp
+
+9. Display Total Salary of Employee
+Ans:- SELECT SUM(SALARY) FROM emp
+
+10.Find Second Highest Salary From Table
+Ans:- SELECT salary FROM (SELECT salary FROM emp ORDER BY salary DESC LIMIT 2) AS emp ORDER BY salary LIMIT 1;
+
+
+
+
+   
