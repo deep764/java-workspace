@@ -1,0 +1,79 @@
+a) Select a unique job from the EMP table.
+Ans: SELECT  DISTINCT Empno, job FROM `emp table`;
+
+b) List the details of the emps in asc order of the Dptnos and desc of Jobs?
+Ans:Dptno: SELECT * FROM `emp table` order by Deptno asc
+	Jobs: SELECT * FROM `emp table` order by Job DESC
+
+c) Display all the unique job groups in descending order?
+Ans:SELECT DISTINCT Job FROM `emp table` ORDER BY job DESC;
+.
+d) List the emps who joined before 1981.
+Ans:SELECT Empno, Ename, sal, Sal/30 DailySal FROM emp table ORDER BY Sal*12;
+
+e) List the Empno, Ename, Sal, Daily sal of all emps in the asc order of Annsal.
+Ans:SELECT * FROM emp table WHERE comm > sal;
+
+f) List the Empno, Ename, Sal, Exp of all emps working for Mgr 7369.
+Ans:SELECT Empno, Empname, Sal FROM `emp table` WHERE Mgr = 7369;
+
+g) Display all the details of the emps who’s Comm. Is more than their Sal?
+Ans:SELECT * FROM `emp table` WHERE Sal < Comm;
+
+h) List the emps who are either ‘CLERK’ or ‘ANALYST’ in the Desc order.
+Ans:SELECT * FROM `emp table` WHERE Job = 'CLERK' OR Job = 'ANALYST' ORDER BY Empno DESC;;
+
+i) List the emps Who Annual sal ranging from 22000 and 45000.
+Ans:SELECT * FROM `emp table` WHERE Sal > 22000 AND Sal < 45000;
+
+j) List the Enames those are starting with ‘S’ and with five characters.
+Ans:SELECT * FROM `emp table` WHERE Empname like 'S%';
+
+k) List the emps whose Empno not starting with digit78.
+Ans:SELECT * FROM `emp table` WHERE Empno NOT like '78%';
+
+l) List all the Clerks of Deptno 20.
+Ans:SELECT * FROM `emp table` WHERE Job = 'CLERK' AND Deptno = 20;
+
+m) List the Emps who are senior to their own MGRS.
+Ans:SELECT * FROM `emp table` WHERE Empno < Mgr;
+
+n) List the Emps of Deptno 20 who’s Jobs are same as Deptno10.
+Ans:SELECT * FROM `emp table` WHERE Deptno = 20 AND Job IN ( SELECT DISTINCT Job FROM `emp table` WHERE Deptno = 10 );
+
+o) List the Emps who’s Sal is same as FORD or SMITH in desc order of Sal.
+Ans:SELECT * FROM `emp table` WHERE Sal IN ( SELECT Sal FROM `emp table` WHERE Empname IN ('FORD', 'SMITH'))ORDER BY Sal DESC;
+
+p) List the emps whose jobs same as SMITH or ALLEN.
+Ans:SELECT * FROM `emp table` WHERE Job IN (SELECT Job FROM `emp table` WHERE Empname IN ('ALLEN', 'SMITH')) ORDER BY Job DESC;
+
+q) Any jobs of deptno 10 those that are not found in deptno 20.
+Ans:SELECT DISTINCT * FROM `emp table` WHERE Deptno = 10 AND Job NOT IN (SELECT DISTINCT Job FROM `emp table` WHERE Deptno = 20);
+
+r) Find the highest sal of EMP table.
+Ans:SELECT MAX(SAL) FROM `emp table`;
+
+s) Find details of highest paid employee.
+Ans:SELECT * FROM `emp table` WHERE Sal = (SELECT MAX(Sal) FROM `emp table`)
+
+t) Find the total sal given to the MGR.
+Ans:SELECT SUM(MGR) FROM `emp table`
+
+u) List the emps whose names contains ‘A’.
+Ans:SELECT * FROM `emp table` WHERE Empname LIKE '%A%';
+
+v) Find all the emps who earn the minimum Salary for each job wise in ascending order.
+Ans:SELECT * FROM `emp table` WHERE Sal = (SELECT MIN(Sal) FROM `emp table`) ORDER BY Job ASC;
+
+w) List the emps whose sal greater than Blake’s sal.
+Ans:SELECT * FROM `emp table` WHERE Sal > (SELECT Sal FROM `emp table` WHERE Empname = 'BLAKE')
+
+x) Create view v1 to select ename, job, dname, loc whose deptno are same.
+Ans:CREATE VIEW v1 AS SELECT e.Empname, e.Job, d.Dname, d.Loc FROM `emp table` e JOIN `dept table` d ON e.Deptno = d.Deptno
+
+y) Create a procedure with dno as input parameter to fetch ename and dname.
+Ans:DELIMITER $$ CREATE PROCEDURE fetch_employee_dept_name(IN dno INT) BEGIN SELECT e.Empname, d.Dname FROM `emp table` e JOIN `dept table` d ON e.Deptno = d.Deptno WHERE d.Deptno = dno; END $$ DELIMITER ;
+CALL fetch_employee_dept_name(10)
+
+z) Add column Pin with bigint data type in table student.aa) Modify the student table to change the sname length from 14 to 40. Create trigger to insert data in emp_log table whenever any update of sal in EMP table. You can set action as ‘New Salary’.
+Ans:
